@@ -20,18 +20,21 @@ function activate(context) {
         
         // No open  file
         if (!editor) {
-            vscode.window.showInformationMessage('No open file')
+            vscode.window.showInformationMessage('No open file.')
             return
         }
         // Must be markdown file
         let doc = editor.document
         if (!(doc.languageId === "markdown")) {
-            vscode.window.showInformationMessage('Must be a markdown file')
+            vscode.window.showInformationMessage('Must be a markdown file.')
             return
         }
         let localFolder = vscode.workspace.getConfiguration('pic2github').get('local_git_folder')
         let remoteRepo = vscode.workspace.getConfiguration('pic2github').get('remote_github_repo')
-       
+        if (localFolder == "" || remoteRepo == "") {
+            vscode.window.showInformationMessage('Please fill the configuration first.')
+            return
+        }
         vscode.window.showOpenDialog({
             filters: { 'Images': ['png', 'jpg', 'gif', 'bmp'] }
         }).then(result => {
