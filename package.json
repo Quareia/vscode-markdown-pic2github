@@ -1,0 +1,65 @@
+{
+    "name": "markdown-pic2github",
+    "displayName": "markdown-pic2github",
+    "description": "An extension for vscode to automatically push markdown pictures to your github repository.",
+    "version": "1.0.1",
+    "icon": "images/icon.png",
+    "publisher": "quareia",
+    "engines": {
+        "vscode": "^1.22.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.mdpic2github"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.mdpic2github",
+                "title": "mdpic2github"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.mdpic2github",
+                "key": "ctrl+alt+g",
+                "when": "editorTextFocus && editorLangId == 'markdown'"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "markdown-pic2github configuration",
+            "properties": {
+                "pic2github.local_git_folder": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Local file folder for your git repo storing markdown picture. e.g. /home/myName/Pictures/markdown-pic"
+                },
+                "pic2github.remote_github_repo": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Remote github repo storing markdown picture. e.g. yourName/markdown-pictures"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "eslint": "^4.11.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Quareia/vscode-markdown-pic2github.git"
+    }
+}
